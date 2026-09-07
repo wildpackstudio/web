@@ -862,11 +862,16 @@
     transition:background .3s ease, color .3s ease;
   }
   .acc-cta span{ transition:transform .3s ease; }
-  .acc-cta:hover{
+  .acc-cta{ -webkit-appearance:none; appearance:none; }
+  .acc-cta:hover,
+  .acc-cta:focus,
+  .acc-cta:active{
     background:var(--accent,var(--naranja));
     color:var(--verde-osc);
   }
-  .acc-cta:hover span{ transform:translateX(3px); }
+  .acc-cta:hover span,
+  .acc-cta:focus span,
+  .acc-cta:active span{ transform:translateX(3px); }
   @media (max-width:600px){
     .acc-panel-inner p{ padding-left:clamp(20px,3vw,30px); }
     .acc-cta-wrap{ padding-left:clamp(20px,3vw,30px); justify-content:flex-start; }
@@ -1324,12 +1329,16 @@
     opacity:1;
     transform:translateY(0);
   }
-  .cta-banner-btn:hover{
+  .cta-banner-btn:hover,
+  .cta-banner-btn:focus,
+  .cta-banner-btn:active{
     background:var(--verde-osc);
     color:var(--crema);
     transform:translateY(-2px);
   }
-  .cta-banner-btn.is-visible:hover{
+  .cta-banner-btn.is-visible:hover,
+  .cta-banner-btn.is-visible:focus,
+  .cta-banner-btn.is-visible:active{
     transform:translateY(-2px);
   }
   @media (prefers-reduced-motion:reduce){
