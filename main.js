@@ -671,6 +671,8 @@
   var laManadaSection = document.getElementById('la-manada');
 
   function showWildLab(){
+    document.documentElement.style.overflow = '';
+    lmCloseModal();
     homeView.classList.add('is-hidden');
     wildImpactSection.classList.remove('is-active');
     if(laManadaSection){ laManadaSection.classList.remove('is-active'); }
@@ -810,6 +812,8 @@
   var wildImpactSection = document.getElementById('wild-impact');
 
   function showWildImpact(){
+    document.documentElement.style.overflow = '';
+    lmCloseModal();
     homeView.classList.add('is-hidden');
     wildImpactSection.classList.add('is-active');
     if(typeof wildLabSection !== 'undefined' && wildLabSection){ wildLabSection.classList.remove('is-active'); }
@@ -824,6 +828,8 @@
   }
 
   function showHome(targetId){
+    document.documentElement.style.overflow = '';
+    lmCloseModal();
     wildImpactSection.classList.remove('is-active');
     if(typeof wildLabSection !== 'undefined' && wildLabSection){ wildLabSection.classList.remove('is-active'); }
     if(laManadaSection){ laManadaSection.classList.remove('is-active'); }
