@@ -1052,14 +1052,44 @@
     observeReveal(section, wr, { threshold:0.25, rootMargin:'0px 0px -10% 0px' });
   })();
 
-  /* ---- Formulario de contacto (front-end únicamente, sin backend conectado) ---- */
+  /* ---- Formulario de contacto (envia los datos por email via FormSubmit) ---- */
   var contactoForm = document.getElementById('contactoForm');
   if(contactoForm){
+    var CONTACTO_ENDPOINT = 'https://formsubmit.co/ajax/wildpackstudioar@gmail.com';
     contactoForm.addEventListener('submit', function(e){
       e.preventDefault();
       var confirmMsg = document.getElementById('contactoConfirm');
-      if(confirmMsg){ confirmMsg.hidden = false; }
-      contactoForm.reset();
+      var errorMsg = document.getElementById('contactoError');
+      var submitBtn = document.getElementById('contactoSubmitBtn');
+      if(confirmMsg){ confirmMsg.hidden = true; }
+      if(errorMsg){ errorMsg.hidden = true; }
+      if(submitBtn){ submitBtn.disabled = true; }
+
+      var formData = new FormData(contactoForm);
+      var payload = {
+        nombre: formData.get('nombre') || '',
+        email: formData.get('email') || '',
+        empresa: formData.get('empresa') || '',
+        mensaje: formData.get('mensaje') || '',
+        _subject: 'Nuevo contacto desde wildpackstudio.com'
+      };
+
+      fetch(CONTACTO_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+        .then(function(res){
+          if(!res.ok){ throw new Error('Respuesta no OK'); }
+          if(confirmMsg){ confirmMsg.hidden = false; }
+          contactoForm.reset();
+        })
+        .catch(function(){
+          if(errorMsg){ errorMsg.hidden = false; }
+        })
+        .finally(function(){
+          if(submitBtn){ submitBtn.disabled = false; }
+        });
     });
   }
 

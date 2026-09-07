@@ -1541,6 +1541,13 @@
     font-size:13px;
     margin:4px 0 0;
   }
+  .contacto-error{
+    font-family:var(--font-body);
+    font-weight:600;
+    color:#e06b5a;
+    font-size:13px;
+    margin:4px 0 0;
+  }
   .contacto-social{
     display:flex;
     justify-content:center;
