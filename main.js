@@ -299,8 +299,13 @@
       onShow: function(wordCount){
         if(manifiestoCta){
           var totalTime = Math.max(0, wordCount - 1) * STEP + DUR;
-          manifiestoCta.style.transitionDelay = Math.max(0.3, totalTime - 0.3).toFixed(3) + 's';
+          var mcDelay = Math.max(0.3, totalTime - 0.3);
+          manifiestoCta.style.transitionDelay = mcDelay.toFixed(3) + 's';
           manifiestoCta.classList.add('is-visible');
+          clearTimeout(manifiestoCta._revealTimer);
+          manifiestoCta._revealTimer = setTimeout(function(){
+            manifiestoCta.style.transitionDelay = '';
+          }, mcDelay * 1000 + 50);
         }
       },
       onHide: function(){
@@ -409,7 +414,14 @@
         var totalTime = Math.max(0, wordCount - 1) * STEP + DUR;
         var delay = Math.max(0.3, totalTime - 0.4);
         if(wrSubtitle){ wrSubtitle.show(delay); }
-        if(ctaBtn){ ctaBtn.style.transitionDelay = delay.toFixed(3) + 's'; ctaBtn.classList.add('is-visible'); }
+        if(ctaBtn){
+          ctaBtn.style.transitionDelay = delay.toFixed(3) + 's';
+          ctaBtn.classList.add('is-visible');
+          clearTimeout(ctaBtn._revealTimer);
+          ctaBtn._revealTimer = setTimeout(function(){
+            ctaBtn.style.transitionDelay = '';
+          }, delay * 1000 + 50);
+        }
       },
       onHide: function(){
         if(wrSubtitle){ wrSubtitle.hide(); }
