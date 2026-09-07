@@ -1878,7 +1878,7 @@
   }
   .wild-lab .wl-contacto-ctas.is-visible{ opacity:1; transform:translateY(0); }
   .wild-lab .wl-contacto-meta{
-    display:flex; justify-content:center; align-items:center; gap:28px; flex-wrap:wrap; font-size:13px; color:rgba(246,243,238,.45);
+    display:flex; justify-content:center; align-items:center; gap:1.5rem; flex-wrap:wrap; padding:2rem 0;
     opacity:0;
     transform:translateY(20px);
     transition:opacity .7s ease, transform .7s cubic-bezier(0.22,1,0.36,1);
@@ -1890,20 +1890,21 @@
     .wild-lab .wl-contacto h2 .wm-inner{ animation:none !important; transform:none !important; opacity:1 !important; }
     .wild-lab .wl-contacto p, .wild-lab .wl-contacto-ctas, .wild-lab .wl-contacto-meta{ transition:none !important; opacity:1 !important; transform:none !important; }
   }
-  .wild-lab .wl-contacto-meta a{ color:rgba(246,243,238,.72); }
-  .wild-lab .wl-contacto-meta a:hover{ color:var(--naranja); }
-  .wild-lab .wl-contacto-social{ display:flex; align-items:center; gap:14px; }
-  .wild-lab .wl-contacto-social span{ font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:rgba(246,243,238,.45); }
-  .wild-lab .wl-contacto-social a{
-    display:inline-flex; align-items:center; justify-content:center;
-    width:34px; height:34px; border-radius:50%;
-    border:1px solid rgba(246,243,238,.3);
-    color:rgba(246,243,238,.85);
-    transition:border-color .25s ease, color .25s ease, background .25s ease;
+  .wild-lab .wl-contacto-meta a{
+    display:flex; align-items:center; justify-content:center;
+    width:48px; height:48px; border-radius:50%;
+    border:1px solid rgba(255,255,255,.3);
+    color:var(--texto-claro);
+    transition:all .3s ease;
   }
-  .wild-lab .wl-contacto-social a:hover{ border-color:var(--naranja); color:var(--verde-osc); background:var(--naranja); }
-  .wild-lab .wl-contacto-social svg{ width:16px; height:16px; fill:currentColor; }
-  .wild-lab .wl-contacto-social a[aria-label*="Instagram"] svg{ width:19px; height:19px; }
+  .wild-lab .wl-contacto-meta a:hover,
+  .wild-lab .wl-contacto-meta a:focus,
+  .wild-lab .wl-contacto-meta a:active{
+    background:var(--naranja);
+    border-color:var(--naranja);
+    color:var(--verde-osc);
+  }
+  .wild-lab .wl-contacto-meta svg{ width:18px; height:18px; }
 
   /* ============ LA MANADA (vista independiente) ============ */
   .la-manada{
