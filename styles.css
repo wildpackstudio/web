@@ -1936,8 +1936,21 @@
     line-height:1.6; color:rgba(246,243,238,.82); max-width:52ch; margin:0 auto 34px;
   }
   .lm-modal-panel p .highlight-weight{ color:var(--texto-claro); }
-  .lm-modal-close{ border-color:var(--naranja); color:var(--texto-claro); }
-  .lm-modal-close:hover{ background:var(--naranja); color:var(--verde-osc); }
+  .lm-modal-close{
+    -webkit-appearance:none;
+    appearance:none;
+    background:transparent;
+    background-color:transparent;
+    border:1.5px solid var(--naranja);
+    color:var(--naranja);
+    transition:all .3s ease;
+  }
+  .lm-modal-close:hover,
+  .lm-modal-close:focus,
+  .lm-modal-close:active{
+    background-color:var(--naranja);
+    color:var(--verde-osc);
+  }
   @media (prefers-reduced-motion:reduce){
     .lm-modal{ transition:none !important; }
     .lm-modal.is-hidden{ transition:none !important; }
