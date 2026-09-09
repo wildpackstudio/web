@@ -697,9 +697,9 @@
     wildLabSection.classList.add('is-active');
     window.scrollTo(0,0);
     links.forEach(function(a){ a.classList.remove('is-active'); });
-    var wlLink = document.querySelector('.main-nav a[href="/wild-lab"]');
+    var wlLink = document.querySelector('.main-nav a[href="/wild-analytics"]');
     if(wlLink){ wlLink.classList.add('is-active'); }
-    if(!isOwnPath('wild-lab')){ history.replaceState(null, '', '#wild-lab'); }
+    if(!isOwnPath('wild-analytics')){ history.replaceState(null, '', '#wild-lab'); }
     syncWlVideo();
     if(!wlChartsReady){ wlChartsReady = true; wlRenderCharts('comercial'); }
     refreshViewLayout();
@@ -865,7 +865,7 @@
       if(homeLink){ homeLink.classList.add('is-active'); }
       window.scrollTo(0,0);
     }
-    var onOwnRoute = isOwnPath('wild-impact') || isOwnPath('wild-lab');
+    var onOwnRoute = isOwnPath('wild-impact') || isOwnPath('wild-analytics');
     var newUrl = targetId && targetId !== '#home' ? targetId : '#home';
     if(onOwnRoute){ newUrl = '/' + (newUrl === '#home' ? '' : newUrl); }
     history.replaceState(null, '', newUrl);
@@ -910,11 +910,13 @@
     });
   });
 
-  /* Rutas propias (/wild-impact, /wild-lab): mismo router de vistas,
-     disparado también por la URL real y no solo por el hash. */
+  /* Rutas propias (/wild-impact, /wild-analytics): mismo router de vistas,
+     disparado también por la URL real y no solo por el hash. Se acepta
+     también /wild-lab (nombre anterior) por si el redirect de vercel.json
+     no llegó a aplicarse. */
   var initialPath = window.location.pathname.replace(/\/index\.html$/, '/');
   var isWildImpactPath = /(^|\/)wild-impact(\.html)?\/?$/.test(initialPath);
-  var isWildLabPath = /(^|\/)wild-lab(\.html)?\/?$/.test(initialPath);
+  var isWildLabPath = /(^|\/)(wild-analytics|wild-lab)(\.html)?\/?$/.test(initialPath);
 
   if(window.location.hash === '#wild-impact' || isWildImpactPath){
     showWildImpact();
