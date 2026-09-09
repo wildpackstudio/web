@@ -33,7 +33,7 @@
   var sections = [];
   links.forEach(function(a){
     var id = a.getAttribute('href');
-    var el = id && id.length > 1 ? document.querySelector(id) : null;
+    var el = id && id.charAt(0) === '#' && id.length > 1 ? document.querySelector(id) : null;
     if(el && document.getElementById('homeView').contains(el)) sections.push({ link:a, el:el });
   });
   var setActive = function(){
@@ -682,6 +682,12 @@
   var wildLabSection = document.getElementById('wild-lab');
   var laManadaSection = document.getElementById('la-manada');
 
+  /* Rutas propias: si ya estamos en /wild-impact o /wild-lab no hace
+     falta (ni conviene) reescribir la URL con el hash de esa misma vista. */
+  function isOwnPath(name){
+    return new RegExp('(^|/)' + name + '(\\.html)?/?$').test(window.location.pathname);
+  }
+
   function showWildLab(){
     document.documentElement.style.overflow = '';
     lmCloseModal();
@@ -691,9 +697,9 @@
     wildLabSection.classList.add('is-active');
     window.scrollTo(0,0);
     links.forEach(function(a){ a.classList.remove('is-active'); });
-    var wlLink = document.querySelector('.main-nav a[href="#wild-lab"]');
+    var wlLink = document.querySelector('.main-nav a[href="/wild-lab"]');
     if(wlLink){ wlLink.classList.add('is-active'); }
-    history.replaceState(null, '', '#wild-lab');
+    if(!isOwnPath('wild-lab')){ history.replaceState(null, '', '#wild-lab'); }
     syncWlVideo();
     if(!wlChartsReady){ wlChartsReady = true; wlRenderCharts('comercial'); }
     refreshViewLayout();
@@ -832,9 +838,9 @@
     if(laManadaSection){ laManadaSection.classList.remove('is-active'); }
     window.scrollTo(0,0);
     links.forEach(function(a){ a.classList.remove('is-active'); });
-    var wiLink = document.querySelector('.main-nav a[href="#wild-impact"]');
+    var wiLink = document.querySelector('.main-nav a[href="/wild-impact"]');
     if(wiLink){ wiLink.classList.add('is-active'); }
-    history.replaceState(null, '', '#wild-impact');
+    if(!isOwnPath('wild-impact')){ history.replaceState(null, '', '#wild-impact'); }
     syncWiVideo();
     refreshViewLayout();
   }
@@ -859,7 +865,10 @@
       if(homeLink){ homeLink.classList.add('is-active'); }
       window.scrollTo(0,0);
     }
-    history.replaceState(null, '', targetId || '#home');
+    var onOwnRoute = isOwnPath('wild-impact') || isOwnPath('wild-lab');
+    var newUrl = targetId && targetId !== '#home' ? targetId : '#home';
+    if(onOwnRoute){ newUrl = '/' + (newUrl === '#home' ? '' : newUrl); }
+    history.replaceState(null, '', newUrl);
     syncActiveVideo();
     refreshViewLayout();
   }
@@ -901,9 +910,15 @@
     });
   });
 
-  if(window.location.hash === '#wild-impact'){
+  /* Rutas propias (/wild-impact, /wild-lab): mismo router de vistas,
+     disparado también por la URL real y no solo por el hash. */
+  var initialPath = window.location.pathname.replace(/\/index\.html$/, '/');
+  var isWildImpactPath = /(^|\/)wild-impact(\.html)?\/?$/.test(initialPath);
+  var isWildLabPath = /(^|\/)wild-lab(\.html)?\/?$/.test(initialPath);
+
+  if(window.location.hash === '#wild-impact' || isWildImpactPath){
     showWildImpact();
-  } else if(window.location.hash === '#wild-lab'){
+  } else if(window.location.hash === '#wild-lab' || isWildLabPath){
     showWildLab();
   } else if(window.location.hash === '#la-manada'){
     showLaManada();
