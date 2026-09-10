@@ -708,11 +708,13 @@
   /* ---- services accordion ---- */
   var accordion = document.getElementById('servicesAccordion');
   if(accordion){
-    accordion.querySelectorAll('.acc-trigger').forEach(function(trigger){
+    var accTriggerItems = accordion.querySelectorAll('.acc-item');
+    accTriggerItems.forEach(function(item){
+      var trigger = item.querySelector('.acc-trigger');
       trigger.addEventListener('click', function(){
-        var item = trigger.closest('.acc-item');
-        var open = item.classList.toggle('is-open');
-        trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+        var isOpen = item.classList.contains('is-open');
+        accTriggerItems.forEach(function(i){ i.classList.remove('is-open'); i.querySelector('.acc-trigger').setAttribute('aria-expanded','false'); });
+        if(!isOpen){ item.classList.add('is-open'); trigger.setAttribute('aria-expanded','true'); }
       });
     });
 

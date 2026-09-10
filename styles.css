@@ -1869,6 +1869,10 @@
     will-change:transform, opacity;
   }
   .wild-lab .wl-contacto p.is-visible{ opacity:1; transform:translateY(0); }
+  .wild-lab .wl-contacto .acc-cta{ border-color:var(--naranja); color:var(--texto-claro); }
+  .wild-lab .wl-contacto .acc-cta:hover,
+  .wild-lab .wl-contacto .acc-cta:focus,
+  .wild-lab .wl-contacto .acc-cta:active{ color:var(--verde-osc); }
   .wild-lab .wl-contacto-ctas{
     display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-bottom:36px;
     opacity:0;
