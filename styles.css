@@ -1824,11 +1824,7 @@
   .wild-lab .wl-acc-panel-inner{ padding:0 2px 34px 52px; max-width:760px; }
   .wild-lab .wl-acc-panel-inner p{ font-size:16px; line-height:1.8; color:#3a473b; margin:0 0 18px; }
   .wild-lab .wl-acc-plain-list{ font-size:14px; line-height:2; color:#6b776a; margin:0 0 22px; font-style:italic; }
-  .wild-lab .wl-acc-cta{
-    font-family:var(--font-body); font-size:14px; font-weight:600;
-    color:var(--naranja); border-bottom:1px solid var(--naranja); padding-bottom:2px;
-  }
-  .wild-lab .wl-acc-cta:hover{ color:#c96f1a; border-color:#c96f1a; }
+  .wild-lab .wl-acc-cta-wrap{ display:flex; justify-content:flex-end; }
   @media (max-width:640px){ .wild-lab .wl-acc-panel-inner{ padding-left:2px; } }
 
   .wild-lab .wl-demo{ padding:40px 0 120px; }
@@ -1865,9 +1861,15 @@
   }
   .wild-lab .wl-contacto .wrap{ position:relative; z-index:2; }
   .wild-lab .wl-contacto h2{
-    font-family:var(--font-display); font-weight:400; font-size:clamp(26px,4.4vw,58px); line-height:1.08;
-    max-width:min(90vw, 900px); margin:0 auto 18px; text-transform:uppercase;
+    font-family:var(--font-display); font-weight:400; line-height:1.1;
+    max-width:min(95vw, 1300px); margin:0 auto 18px; text-transform:uppercase;
     visibility:hidden;
+  }
+  .wild-lab .wl-contacto h2 .title-line-1,
+  .wild-lab .wl-contacto h2 .title-line-2{
+    display:inline-block;
+    white-space:nowrap;
+    font-size:clamp(12px,4.6vw,58px);
   }
   .wild-lab .wl-contacto h2 .wm{
     display:inline-block;
