@@ -587,7 +587,13 @@
       trigger.addEventListener('click', function(){
         var isOpen = item.classList.contains('is-open');
         wlAccItems.forEach(function(i){ i.classList.remove('is-open'); i.querySelector('.wl-acc-trigger').setAttribute('aria-expanded','false'); });
-        if(!isOpen){ item.classList.add('is-open'); trigger.setAttribute('aria-expanded','true'); }
+        if(!isOpen){
+          item.classList.add('is-open');
+          trigger.setAttribute('aria-expanded','true');
+          setTimeout(function(){
+            item.scrollIntoView({ behavior:'smooth', block:'nearest' });
+          }, 470);
+        }
       });
     });
   }
@@ -714,7 +720,13 @@
       trigger.addEventListener('click', function(){
         var isOpen = item.classList.contains('is-open');
         accTriggerItems.forEach(function(i){ i.classList.remove('is-open'); i.querySelector('.acc-trigger').setAttribute('aria-expanded','false'); });
-        if(!isOpen){ item.classList.add('is-open'); trigger.setAttribute('aria-expanded','true'); }
+        if(!isOpen){
+          item.classList.add('is-open');
+          trigger.setAttribute('aria-expanded','true');
+          setTimeout(function(){
+            item.scrollIntoView({ behavior:'smooth', block:'nearest' });
+          }, 400);
+        }
       });
     });
 
