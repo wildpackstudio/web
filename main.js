@@ -598,92 +598,6 @@
     });
   }
 
-  /* ---- Wild Lab: demo dashboard (Chart.js) — datos de demostración ---- */
-  var WL_DATA = {
-    comercial: {
-      title: 'Facturación mensual por canal',
-      secondary: 'Distribución por segmento',
-      labels: ['Ene','Feb','Mar','Abr','May','Jun'],
-      series: [
-        { label:'Directo', data:[42,48,44,55,60,66], color:'#E48C34' },
-        { label:'Distribuidores', data:[30,29,33,31,35,34], color:'#131C11' }
-      ],
-      pie: { labels:['PyME','Corporativo','Exportación'], data:[46,34,20], colors:['#E48C34','#131C11','#E3AA98'] },
-      kpi1v:'18,4%', kpi1l:'Crecimiento vs. año anterior',
-      kpi2v:'3,2 días', kpi2l:'Tiempo prom. de cierre'
-    },
-    operativa: {
-      title: 'Tiempos de proceso por área (hs)',
-      secondary: 'Costos logísticos por destino',
-      labels: ['Ene','Feb','Mar','Abr','May','Jun'],
-      series: [
-        { label:'Producción', data:[120,110,132,118,125,109], color:'#E48C34' },
-        { label:'Logística', data:[64,70,58,66,60,52], color:'#131C11' }
-      ],
-      pie: { labels:['CABA / GBA','Interior','Exportación'], data:[38,41,21], colors:['#E48C34','#131C11','#E3AA98'] },
-      kpi1v:'−12%', kpi1l:'Tiempo de ciclo vs. trimestre anterior',
-      kpi2v:'96,4%', kpi2l:'Entregas a tiempo'
-    }
-  };
-
-  var wlMainChart, wlPieChart, wlChartsReady = false;
-
-  function wlRenderCharts(view){
-    if(typeof Chart === 'undefined') return;
-    var d = WL_DATA[view];
-    document.getElementById('wlChartTitle').textContent = d.title;
-    document.getElementById('wlSecondaryTitle').textContent = d.secondary;
-    document.getElementById('wlKpi1v').textContent = d.kpi1v;
-    document.getElementById('wlKpi1l').textContent = d.kpi1l;
-    document.getElementById('wlKpi2v').textContent = d.kpi2v;
-    document.getElementById('wlKpi2l').textContent = d.kpi2l;
-
-    var fontColor = '#6b776a';
-    var gridColor = 'rgba(23,57,31,.08)';
-
-    if(wlMainChart) wlMainChart.destroy();
-    var ctx1 = document.getElementById('wlMainChart').getContext('2d');
-    wlMainChart = new Chart(ctx1, {
-      type:'bar',
-      data:{
-        labels:d.labels,
-        datasets:d.series.map(function(s){
-          return { label:s.label, data:s.data, backgroundColor:s.color, borderRadius:3, maxBarThickness:22 };
-        })
-      },
-      options:{
-        responsive:true,
-        plugins:{ legend:{ labels:{ color:fontColor, font:{ family:'Montserrat', size:11 } } } },
-        scales:{
-          x:{ ticks:{ color:fontColor, font:{ family:'Montserrat', size:10 } }, grid:{ display:false } },
-          y:{ ticks:{ color:fontColor, font:{ family:'Montserrat', size:10 } }, grid:{ color:gridColor } }
-        }
-      }
-    });
-
-    if(wlPieChart) wlPieChart.destroy();
-    var ctx2 = document.getElementById('wlPieChart').getContext('2d');
-    wlPieChart = new Chart(ctx2, {
-      type:'doughnut',
-      data:{
-        labels:d.pie.labels,
-        datasets:[{ data:d.pie.data, backgroundColor:d.pie.colors, borderColor:'#FFFFFF', borderWidth:2 }]
-      },
-      options:{
-        responsive:true,
-        plugins:{ legend:{ position:'bottom', labels:{ color:fontColor, font:{ family:'Montserrat', size:10 }, boxWidth:10 } } }
-      }
-    });
-  }
-
-  document.querySelectorAll('#wlDemoToggle button').forEach(function(btn){
-    btn.addEventListener('click', function(){
-      document.querySelectorAll('#wlDemoToggle button').forEach(function(b){ b.classList.remove('is-active'); });
-      btn.classList.add('is-active');
-      wlRenderCharts(btn.dataset.view);
-    });
-  });
-
   /* ---- Wild Lab: vista independiente (no forma parte del scroll de la home) ---- */
   var wildLabSection = document.getElementById('wild-lab');
   var laManadaSection = document.getElementById('la-manada');
@@ -707,7 +621,6 @@
     if(wlLink){ wlLink.classList.add('is-active'); }
     if(!isOwnPath('wild-analytics')){ history.replaceState(null, '', '#wild-lab'); }
     syncWlVideo();
-    if(!wlChartsReady){ wlChartsReady = true; wlRenderCharts('comercial'); }
     refreshViewLayout();
   }
 
