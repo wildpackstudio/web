@@ -598,6 +598,49 @@
     });
   }
 
+  /* ---- Wild Lab: pestañas de informes (Looker) + flechas anterior/siguiente ----
+     Cada pestaña habilitada lleva su URL en data-src; las flechas recorren solo esas. */
+  (function(){
+    var toggle = document.getElementById('wlDemoToggle');
+    var frame = document.getElementById('wlDemoFrame');
+    if(!toggle || !frame) return;
+    var tabs = Array.prototype.slice.call(toggle.querySelectorAll('button[data-view]'));
+    var prev = document.querySelector('.wl-demo-arrow--prev');
+    var next = document.querySelector('.wl-demo-arrow--next');
+
+    function available(){
+      return tabs.filter(function(b){ return !b.disabled && b.getAttribute('data-src'); });
+    }
+    function activate(btn){
+      tabs.forEach(function(b){
+        var on = b === btn;
+        b.classList.toggle('is-active', on);
+        b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+      var src = btn.getAttribute('data-src');
+      if(src && frame.getAttribute('src') !== src) frame.setAttribute('src', src);
+      var title = btn.getAttribute('data-title');
+      if(title) frame.title = title;
+      if(toggle.scrollWidth > toggle.clientWidth){
+        toggle.scrollTo({ left: btn.offsetLeft - (toggle.clientWidth - btn.offsetWidth) / 2, behavior:'smooth' });
+      }
+    }
+    function step(dir){
+      var list = available();
+      if(list.length < 2) return;
+      var cur = list.indexOf(toggle.querySelector('button.is-active'));
+      activate(list[(cur + dir + list.length) % list.length]);
+    }
+
+    tabs.forEach(function(b){
+      b.addEventListener('click', function(){ if(!b.disabled && b.getAttribute('data-src')) activate(b); });
+    });
+    if(prev) prev.addEventListener('click', function(){ step(-1); });
+    if(next) next.addEventListener('click', function(){ step(1); });
+    var single = available().length < 2;
+    [prev, next].forEach(function(a){ if(a) a.disabled = single; });
+  })();
+
   /* ---- Wild Lab: vista independiente (no forma parte del scroll de la home) ---- */
   var wildLabSection = document.getElementById('wild-lab');
   var laManadaSection = document.getElementById('la-manada');

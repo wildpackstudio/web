@@ -1863,13 +1863,49 @@
   .wild-lab .wl-demo-header{ margin-bottom:28px; max-width:640px; }
   .wild-lab .wl-demo-header h2{ font-family:var(--font-display); font-weight:400; font-size:clamp(28px,3.6vw,42px); margin:0 0 14px; color:var(--verde-osc); }
   .wild-lab .wl-demo-note{ font-size:14px; color:#7a857a; font-style:italic; margin:0; }
-  .wild-lab .wl-demo-toggle{ display:inline-flex; gap:4px; margin-bottom:18px; }
-  .wild-lab .wl-demo-toggle button{
-    all:unset; cursor:pointer; font-family:var(--font-body); font-size:13px; font-weight:600;
-    padding:9px 18px; color:#6b776a; border-bottom:2px solid transparent;
+  /* Pestañas de informes: mismo ancho que el tablero, recuadros naranjas + flechas */
+  .wild-lab .wl-demo-tabs{
+    display:flex; align-items:center; gap:12px;
+    width:100%; max-width:1000px; margin:0 auto 16px;
   }
-  .wild-lab .wl-demo-toggle button.is-active{ color:var(--verde-osc); border-color:var(--naranja); }
-  .wild-lab .wl-demo-toggle button:disabled{ cursor:not-allowed; opacity:.5; }
+  .wild-lab .wl-demo-toggle{
+    position:relative;
+    flex:1 1 auto; min-width:0;
+    display:flex; gap:12px; justify-content:space-between;
+    overflow-x:auto; scroll-behavior:smooth; scroll-snap-type:x proximity;
+    scrollbar-width:none;
+  }
+  .wild-lab .wl-demo-toggle::-webkit-scrollbar{ display:none; }
+  .wild-lab .wl-demo-toggle button{
+    -webkit-appearance:none; appearance:none; cursor:pointer;
+    flex:1 1 0; min-width:max-content; scroll-snap-align:center;
+    display:inline-flex; align-items:center; justify-content:center; gap:6px;
+    padding:10px 20px; border:2px solid var(--naranja); border-radius:22px;
+    background:transparent; color:var(--verde-osc);
+    font-family:var(--font-body); font-size:14px; font-weight:600; line-height:1.2; white-space:nowrap;
+    transition:background-color .2s ease, color .2s ease, opacity .2s ease;
+  }
+  .wild-lab .wl-demo-toggle button:hover:not(:disabled):not(.is-active){ background:rgba(228,140,52,.12); }
+  .wild-lab .wl-demo-toggle button.is-active{ background:var(--naranja); color:var(--verde-osc); font-weight:700; }
+  .wild-lab .wl-demo-toggle button:disabled{ cursor:not-allowed; opacity:.55; color:#6b776a; }
+  .wild-lab .wl-demo-toggle button:focus-visible,
+  .wild-lab .wl-demo-arrow:focus-visible{ outline:2px solid var(--verde-osc); outline-offset:2px; }
+  .wild-lab .wl-demo-arrow{
+    -webkit-appearance:none; appearance:none; cursor:pointer;
+    flex:0 0 auto; width:40px; height:40px; padding:0;
+    display:inline-flex; align-items:center; justify-content:center;
+    border:2px solid var(--naranja); border-radius:50%;
+    background:transparent; color:var(--verde-osc);
+    transition:background-color .2s ease, opacity .2s ease;
+  }
+  .wild-lab .wl-demo-arrow:hover:not(:disabled){ background:var(--naranja); }
+  .wild-lab .wl-demo-arrow:disabled{ cursor:not-allowed; opacity:.35; }
+  @media (max-width:767px){
+    .wild-lab .wl-demo-tabs{ gap:8px; }
+    .wild-lab .wl-demo-toggle{ gap:8px; justify-content:flex-start; }
+    .wild-lab .wl-demo-toggle button{ flex:0 0 auto; padding:9px 16px; font-size:13px; }
+    .wild-lab .wl-demo-arrow{ width:34px; height:34px; }
+  }
   .wild-lab .wl-demo-soon{ display:inline-block; margin-left:6px; padding:2px 7px; border-radius:999px; background:rgba(23,57,31,.08); color:#7a857a; font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:.03em; vertical-align:1px; }
   .wild-lab .wl-demo-board{ display:block; min-width:0; }
   .wild-lab .wl-demo-report{

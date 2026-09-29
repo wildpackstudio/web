@@ -507,15 +507,24 @@
             <p class="wl-demo-note">Los datos de este panel son de demostración, así se arma un reporte real, con tus propios números.</p>
           </div>
 
-          <div class="wl-demo-toggle" role="group" aria-label="Cambiar vista del demo" id="wlDemoToggle">
-            <button class="is-active" data-view="negocio">Datos de negocio</button>
-            <button data-view="mercado" disabled aria-disabled="true">Datos de mercado <span class="wl-demo-soon">Próximamente</span></button>
-            <button data-view="digital" disabled aria-disabled="true">Digital Analytics <span class="wl-demo-soon">Próximamente</span></button>
+          <div class="wl-demo-tabs">
+            <button class="wl-demo-arrow wl-demo-arrow--prev" type="button" aria-label="Informe anterior" aria-controls="wlDemoFrame">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+            </button>
+            <div class="wl-demo-toggle" role="group" aria-label="Cambiar vista del demo" id="wlDemoToggle">
+              <button class="is-active" type="button" aria-pressed="true" data-view="negocio" data-src="https://datastudio.google.com/embed/reporting/3f9812e7-02a7-453e-9066-01d4cdc459db/page/mF08F" data-title="Reporte Wild Analytics — Datos de negocio">Datos de negocio</button>
+              <button type="button" aria-pressed="false" data-view="mercado" disabled aria-disabled="true">Datos de mercado <span class="wl-demo-soon">Próximamente</span></button>
+              <button type="button" aria-pressed="false" data-view="digital" disabled aria-disabled="true">Digital Analytics <span class="wl-demo-soon">Próximamente</span></button>
+            </div>
+            <button class="wl-demo-arrow wl-demo-arrow--next" type="button" aria-label="Informe siguiente" aria-controls="wlDemoFrame">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+            </button>
           </div>
 
           <div class="wl-demo-board">
             <div class="wl-demo-report">
               <iframe
+                id="wlDemoFrame"
                 src="https://datastudio.google.com/embed/reporting/3f9812e7-02a7-453e-9066-01d4cdc459db/page/mF08F"
                 title="Reporte Wild Analytics — Datos de negocio"
                 loading="lazy"
