@@ -1702,7 +1702,7 @@
   @media (prefers-reduced-motion:reduce){
     .wild-lab .wl-hero h1, .wild-lab .wl-hero p.body{ animation:none !important; opacity:1 !important; transform:none !important; }
   }
-  /* Eyebrow sobre el H1 del hero */
+  /* Linea naranja bajo el parrafo del hero */
   .wild-lab .wl-hero-eyebrow{
     font-family:var(--font-body);
     font-weight:600;
@@ -1714,8 +1714,8 @@
     text-transform:none;
     text-align:center;
     max-width:90%;
-    margin:0 0 14px;
-    animation:heroSubtitleFadeUp 1.5s cubic-bezier(0.22,1,0.36,1) .15s both;
+    margin:14px auto 0;
+    animation:heroSubtitleFadeUp 1.5s cubic-bezier(0.22,1,0.36,1) .45s both;
   }
   @media (prefers-reduced-motion:reduce){
     .wild-lab .wl-hero-eyebrow{ animation:none !important; opacity:1 !important; transform:none !important; }
@@ -1781,19 +1781,15 @@
   /* Subtitulo BI bajo "El instinto te dice..." */
   .wild-lab .wl-intro-highlight.wl-intro-bi{
     font-family:var(--font-body);
-    font-weight:500;
+    font-weight:400;
     text-transform:lowercase;
-    letter-spacing:-.092em;
-    word-spacing:.12em;
+    letter-spacing:normal;
     font-size:clamp(17px,1.7vw,22px);
-    line-height:1.35;
+    line-height:1.45;
     max-width:none;
   }
   .wild-lab .wl-intro-bi > span{ display:block; }
   .wild-lab .wl-intro-bi .wl-intro-bi-abbr{ text-transform:none; text-decoration:none; }
-  @media (max-width:760px){
-    .wild-lab .wl-intro-highlight.wl-intro-bi{ letter-spacing:-.05em; word-spacing:.08em; }
-  }
   @media (prefers-reduced-motion:reduce){
     .wild-lab .wl-intro h2{ visibility:visible; }
     .wild-lab .wl-intro h2 .wp{ animation:none !important; opacity:1 !important; transform:none !important; }
@@ -1934,17 +1930,24 @@
     will-change:transform, opacity;
   }
   .wild-lab .wl-contacto-ctas.is-visible{ opacity:1; transform:translateY(0); }
+  .wild-lab .wl-contacto .wl-contacto-ctas{
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    width:100%;
+    gap:0;
+  }
   /* Microcopy bajo "Agendá tu diagnóstico" (se anima junto con .wl-contacto-ctas) */
   .wild-lab .wl-contacto .wl-contacto-note{
-    flex-basis:100%;
     font-family:var(--font-body);
     font-weight:600;
     font-size:15px;
     line-height:1.5;
     color:#FFFDF7;
     text-align:center;
-    max-width:52ch;
-    margin:2px auto 0;
+    max-width:600px;
+    margin:14px auto 0;
     opacity:1;
     transform:none;
     transition:none;
