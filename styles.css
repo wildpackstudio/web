@@ -1782,14 +1782,15 @@
   .wild-lab .wl-intro-highlight.wl-intro-bi{
     font-family:var(--font-body);
     font-weight:400;
-    text-transform:lowercase;
+    color:var(--naranja);
+    text-transform:none;
     letter-spacing:normal;
     font-size:clamp(17px,1.7vw,22px);
     line-height:1.45;
     max-width:none;
   }
   .wild-lab .wl-intro-bi > span{ display:block; }
-  .wild-lab .wl-intro-bi .wl-intro-bi-abbr{ text-transform:none; text-decoration:none; }
+  .wild-lab .wl-intro-bi .wl-intro-bi-abbr{ text-decoration:none; }
   @media (prefers-reduced-motion:reduce){
     .wild-lab .wl-intro h2{ visibility:visible; }
     .wild-lab .wl-intro h2 .wp{ animation:none !important; opacity:1 !important; transform:none !important; }
