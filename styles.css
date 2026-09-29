@@ -1859,11 +1859,11 @@
   .wild-lab .wl-acc-cta-wrap{ display:flex; justify-content:flex-end; }
   @media (max-width:640px){ .wild-lab .wl-acc-panel-inner{ padding-left:2px; } }
 
-  .wild-lab .wl-demo{ padding:40px 0 120px; }
-  .wild-lab .wl-demo-header{ margin-bottom:48px; max-width:640px; }
+  .wild-lab .wl-demo{ padding:32px 0 96px; }
+  .wild-lab .wl-demo-header{ margin-bottom:28px; max-width:640px; }
   .wild-lab .wl-demo-header h2{ font-family:var(--font-display); font-weight:400; font-size:clamp(28px,3.6vw,42px); margin:0 0 14px; color:var(--verde-osc); }
   .wild-lab .wl-demo-note{ font-size:14px; color:#7a857a; font-style:italic; margin:0; }
-  .wild-lab .wl-demo-toggle{ display:inline-flex; gap:4px; margin-bottom:30px; }
+  .wild-lab .wl-demo-toggle{ display:inline-flex; gap:4px; margin-bottom:18px; }
   .wild-lab .wl-demo-toggle button{
     all:unset; cursor:pointer; font-family:var(--font-body); font-size:13px; font-weight:600;
     padding:9px 18px; color:#6b776a; border-bottom:2px solid transparent;
@@ -1874,13 +1874,15 @@
   .wild-lab .wl-demo-board{ display:block; min-width:0; }
   .wild-lab .wl-demo-report{
     background:var(--blanco); border-radius:6px; padding:16px; box-shadow:0 12px 40px -18px rgba(19,28,17,.25);
-    width:100%; max-width:1000px; margin:0 auto;
+    /* Ancho acotado por la altura: el iframe 4:3 nunca supera ~62vh, asi titulo + tablero entran juntos en desktop */
+    width:100%; max-width:min(900px, calc((62vh - 32px) * 4 / 3 + 32px)); margin:0 auto;
     overflow-x:auto; -webkit-overflow-scrolling:touch;
   }
   /* 4:3 = lienzo por defecto de Looker Studio (1200x900): el reporte entra completo sin recorte */
   .wild-lab .wl-demo-report iframe{ display:block; width:100%; height:auto; aspect-ratio:4 / 3; border:none; border-radius:4px; }
   @media (max-width:760px){
-    .wild-lab .wl-demo-report{ padding:8px; border-radius:4px; }
+    .wild-lab .wl-demo-report{ max-width:none; padding:8px; border-radius:4px; }
+    .wild-lab .wl-demo-report iframe{ aspect-ratio:auto; height:max(450px, 50vh); }
   }
 
   .wild-lab .wl-caso{ margin-top:80px; padding-top:48px; border-top:1px solid rgba(23,57,31,.14); display:grid; grid-template-columns:.45fr 1.55fr; gap:36px; }
