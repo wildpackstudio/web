@@ -1702,6 +1702,24 @@
   @media (prefers-reduced-motion:reduce){
     .wild-lab .wl-hero h1, .wild-lab .wl-hero p.body{ animation:none !important; opacity:1 !important; transform:none !important; }
   }
+  /* Eyebrow sobre el H1 del hero */
+  .wild-lab .wl-hero-eyebrow{
+    font-family:var(--font-body);
+    font-weight:600;
+    font-style:italic;
+    color:var(--naranja);
+    font-size:clamp(13px,1.35vw,17px);
+    line-height:1.4;
+    letter-spacing:.02em;
+    text-transform:none;
+    text-align:center;
+    max-width:90%;
+    margin:0 0 14px;
+    animation:heroSubtitleFadeUp 1.5s cubic-bezier(0.22,1,0.36,1) .15s both;
+  }
+  @media (prefers-reduced-motion:reduce){
+    .wild-lab .wl-hero-eyebrow{ animation:none !important; opacity:1 !important; transform:none !important; }
+  }
 
   /* ---------- TRANSICIONES DEGRADADAS ---------- */
   .wild-lab .wl-fade-to-dark{
@@ -1759,6 +1777,22 @@
   .wild-lab .wl-intro-highlight.is-visible{
     opacity:1;
     transform:translateY(0);
+  }
+  /* Subtitulo BI bajo "El instinto te dice..." */
+  .wild-lab .wl-intro-highlight.wl-intro-bi{
+    font-family:var(--font-body);
+    font-weight:500;
+    text-transform:lowercase;
+    letter-spacing:-.092em;
+    word-spacing:.12em;
+    font-size:clamp(17px,1.7vw,22px);
+    line-height:1.35;
+    max-width:none;
+  }
+  .wild-lab .wl-intro-bi > span{ display:block; }
+  .wild-lab .wl-intro-bi .wl-intro-bi-abbr{ text-transform:none; text-decoration:none; }
+  @media (max-width:760px){
+    .wild-lab .wl-intro-highlight.wl-intro-bi{ letter-spacing:-.05em; word-spacing:.08em; }
   }
   @media (prefers-reduced-motion:reduce){
     .wild-lab .wl-intro h2{ visibility:visible; }
@@ -1840,9 +1874,8 @@
   .wild-lab .wl-demo-toggle button:disabled{ cursor:not-allowed; opacity:.5; }
   .wild-lab .wl-demo-soon{ display:inline-block; margin-left:6px; padding:2px 7px; border-radius:999px; background:rgba(23,57,31,.08); color:#7a857a; font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:.03em; vertical-align:1px; }
   .wild-lab .wl-demo-board{ display:block; }
-  .wild-lab .wl-demo-report{ background:var(--blanco); border-radius:6px; padding:16px; box-shadow:0 12px 40px -18px rgba(19,28,17,.25); }
-  .wild-lab .wl-demo-report iframe{ display:block; width:100%; height:650px; border:0; border-radius:4px; }
-  @media (max-width:700px){ .wild-lab .wl-demo-report iframe{ height:480px; } }
+  .wild-lab .wl-demo-report{ background:var(--blanco); border-radius:6px; padding:16px; box-shadow:0 12px 40px -18px rgba(19,28,17,.25); aspect-ratio:4 / 3; }
+  .wild-lab .wl-demo-report iframe{ display:block; width:100%; height:100%; border:0; border-radius:4px; overflow:hidden; }
 
   .wild-lab .wl-caso{ margin-top:80px; padding-top:48px; border-top:1px solid rgba(23,57,31,.14); display:grid; grid-template-columns:.45fr 1.55fr; gap:36px; }
   @media (max-width:760px){ .wild-lab .wl-caso{ grid-template-columns:1fr; } }
@@ -1901,6 +1934,24 @@
     will-change:transform, opacity;
   }
   .wild-lab .wl-contacto-ctas.is-visible{ opacity:1; transform:translateY(0); }
+  /* Microcopy bajo "Agendá tu diagnóstico" (se anima junto con .wl-contacto-ctas) */
+  .wild-lab .wl-contacto .wl-contacto-note{
+    flex-basis:100%;
+    font-family:var(--font-body);
+    font-weight:600;
+    font-size:15px;
+    line-height:1.5;
+    color:#FFFDF7;
+    text-align:center;
+    max-width:52ch;
+    margin:2px auto 0;
+    opacity:1;
+    transform:none;
+    transition:none;
+  }
+  @media (max-width:760px){
+    .wild-lab .wl-contacto .wl-contacto-note{ font-size:13.5px; }
+  }
   .wild-lab .wl-contacto-meta{
     display:flex; justify-content:center; align-items:center; gap:1.5rem; flex-wrap:wrap; padding:2rem 0;
     opacity:0;
