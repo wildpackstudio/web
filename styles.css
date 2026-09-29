@@ -1908,14 +1908,18 @@
   }
   .wild-lab .wl-demo-soon{ display:inline-block; margin-left:6px; padding:2px 7px; border-radius:999px; background:rgba(23,57,31,.08); color:#7a857a; font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:.03em; vertical-align:1px; }
   .wild-lab .wl-demo-board{ display:block; min-width:0; }
+  /* 4:3 = lienzo del informe de Looker (1200x900). content-box hace que la proporcion
+     aplique al area del iframe (sin el padding), asi el informe entra exacto, sin scroll.
+     Ancho exterior maximo = 1000px, igual que .wl-demo-tabs. */
   .wild-lab .wl-demo-report{
     background:var(--blanco); border-radius:6px; padding:16px; box-shadow:0 12px 40px -18px rgba(19,28,17,.25);
-    width:100%; max-width:1000px; aspect-ratio:16 / 10; margin:0 auto;
+    box-sizing:content-box;
+    width:calc(100% - 32px); max-width:968px; aspect-ratio:4 / 3; margin:0 auto;
     overflow:hidden;
   }
-  .wild-lab .wl-demo-report iframe{ display:block; width:100%; height:100%; border:none; border-radius:4px; overflow:hidden; }
+  .wild-lab .wl-demo-report iframe{ display:block; width:100%; height:100%; border:0; border-radius:4px; overflow:hidden; }
   @media (max-width:767px){
-    .wild-lab .wl-demo-report{ padding:8px; border-radius:4px; }
+    .wild-lab .wl-demo-report{ padding:8px; border-radius:4px; width:calc(100% - 16px); }
   }
 
   .wild-lab .wl-caso{ margin-top:80px; padding-top:48px; border-top:1px solid rgba(23,57,31,.14); display:grid; grid-template-columns:.45fr 1.55fr; gap:36px; }
