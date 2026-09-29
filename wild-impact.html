@@ -506,24 +506,19 @@
           </div>
 
           <div class="wl-demo-toggle" role="group" aria-label="Cambiar vista del demo" id="wlDemoToggle">
-            <button class="is-active" data-view="comercial">Vista comercial</button>
-            <button data-view="operativa">Vista operativa</button>
+            <button class="is-active" data-view="negocio">Datos de negocio</button>
+            <button data-view="mercado" disabled aria-disabled="true">Datos de mercado <span class="wl-demo-soon">Próximamente</span></button>
+            <button data-view="digital" disabled aria-disabled="true">Digital Analytics <span class="wl-demo-soon">Próximamente</span></button>
           </div>
 
           <div class="wl-demo-board">
-            <div class="wl-demo-panel">
-              <h4 id="wlChartTitle">Facturación mensual por canal</h4>
-              <canvas id="wlMainChart" height="220"></canvas>
-            </div>
-            <div>
-              <div class="wl-demo-kpis">
-                <div class="wl-demo-kpi"><div class="v" id="wlKpi1v">18,4%</div><div class="l" id="wlKpi1l">Crecimiento vs. año anterior</div></div>
-                <div class="wl-demo-kpi"><div class="v" id="wlKpi2v">3,2 días</div><div class="l" id="wlKpi2l">Tiempo prom. de cierre</div></div>
-              </div>
-              <div class="wl-demo-panel">
-                <h4 id="wlSecondaryTitle">Distribución por segmento</h4>
-                <canvas id="wlPieChart" height="200"></canvas>
-              </div>
+            <div class="wl-demo-report">
+              <iframe
+                src="https://datastudio.google.com/embed/reporting/3f9812e7-02a7-453e-9066-01d4cdc459db/page/mF08F"
+                title="Reporte Wild Analytics — Datos de negocio"
+                loading="lazy"
+                allowfullscreen
+                sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
             </div>
           </div>
 
