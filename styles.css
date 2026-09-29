@@ -1783,6 +1783,7 @@
     font-family:var(--font-body);
     font-weight:400;
     color:var(--naranja);
+    font-style:italic;
     text-transform:none;
     letter-spacing:normal;
     font-size:clamp(17px,1.7vw,22px);
