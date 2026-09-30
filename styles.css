@@ -2192,6 +2192,10 @@
     font-family:var(--font-body); font-weight:700; font-size:10px;
     letter-spacing:.1em; text-transform:uppercase; color:rgba(246,243,238,.55);
   }
+  /* Sin fotos (bloque .lm-team-visual comentado): texto en una columna centrada y menos aire vertical.
+     Se desactiva solo cuando vuelvan las fotos. */
+  .lm-team:not(:has(.lm-team-visual)){ padding:clamp(64px,9vw,120px) 0; }
+  .lm-team-wrap:not(:has(.lm-team-visual)){ grid-template-columns:minmax(0, 720px); justify-content:center; }
   @media (max-width:760px){
     .lm-team-wrap{ grid-template-columns:1fr; }
     .lm-team-visual{ max-width:420px; margin:0 auto; }
