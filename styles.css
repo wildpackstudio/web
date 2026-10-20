@@ -3,7 +3,7 @@
     font-family:"Impact Wild";
     src:url('assets/fonts/impact-wild-400.ttf') format("truetype");
     font-weight:400;
-    font-display:swap;
+    font-display:block;
   }
   @font-face{
     font-family:"Montserrat Wild";
