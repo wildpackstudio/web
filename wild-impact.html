@@ -1,3 +1,5 @@
+<!doctype html>
+<html lang="es">
 <head>
 <!-- Google Tag Manager -->
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -24,7 +26,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="icon" type="image/png" href="assets/images/favicon.png">
 <link rel="preload" href="assets/fonts/impact-wild-400.ttf" as="font" type="font/ttf" crossorigin>
-<link rel="stylesheet" href="styles.css?v=8">
+<link rel="stylesheet" href="styles.css?v=9">
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -523,21 +525,36 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <p class="wl-demo-note">En esta demo interactiva, se dimensiona el potencial de aplicar esto a tu negocio y así sacarle el máximo provecho a tus datos.</p>
           </div>
 
-          <div class="wl-demo-tabs">
+          <div class="wl-demo-stage">
+            <div class="wl-demo-tabs">
+              <div class="wl-demo-toggle" role="group" aria-label="Cambiar vista del demo" id="wlDemoToggle">
+                <button class="is-active" type="button" aria-pressed="true" data-view="negocio" data-src="https://datastudio.google.com/embed/reporting/3f9812e7-02a7-453e-9066-01d4cdc459db/page/mF08F" data-title="Reporte Wild Analytics — Datos de negocio">Datos de negocio</button>
+                <button type="button" aria-pressed="false" data-view="mercado" data-src="https://datastudio.google.com/embed/reporting/148ee074-50c6-43df-8904-e1fe5a56cca0/page/6rVAG" data-title="Reporte Wild Analytics — Datos de mercado">Datos de mercado</button>
+                <button type="button" aria-pressed="false" data-view="digital" data-src="https://datastudio.google.com/embed/reporting/4fd2ec68-444f-411f-9cb0-45f97a5d9c6b/page/yNoBG" data-title="Reporte Wild Analytics — Digital Analytics">Digital Analytics</button>
+              </div>
+            </div>
+
+            <!-- Conclusiones por informe: completar el contenido de cada <template> (mismo data-view que su pestaña) -->
+            <template data-conclusions="negocio"></template>
+            <template data-conclusions="mercado"></template>
+            <template data-conclusions="digital"></template>
+
+            <dialog class="wl-demo-dialog" id="wlDemoInfo" aria-labelledby="wlDemoInfoTitle">
+              <div class="wl-demo-dialog-head">
+                <div>
+                  <p class="wl-demo-dialog-kicker">Conclusiones</p>
+                  <h3 id="wlDemoInfoTitle">Datos de negocio</h3>
+                </div>
+                <button class="wl-demo-dialog-close" type="button" aria-label="Cerrar conclusiones" data-close>
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+                </button>
+              </div>
+              <div class="wl-demo-dialog-body" id="wlDemoInfoBody"></div>
+            </dialog>
+
             <button class="wl-demo-arrow wl-demo-arrow--prev" type="button" aria-label="Informe anterior" aria-controls="wlDemoFrame">
               <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
             </button>
-            <div class="wl-demo-toggle" role="group" aria-label="Cambiar vista del demo" id="wlDemoToggle">
-              <button class="is-active" type="button" aria-pressed="true" data-view="negocio" data-src="https://datastudio.google.com/embed/reporting/3f9812e7-02a7-453e-9066-01d4cdc459db/page/mF08F" data-title="Reporte Wild Analytics — Datos de negocio">Datos de negocio</button>
-              <button type="button" aria-pressed="false" data-view="mercado" disabled aria-disabled="true">Datos de mercado <span class="wl-demo-soon">Próximamente</span></button>
-              <button type="button" aria-pressed="false" data-view="digital" disabled aria-disabled="true">Digital Analytics <span class="wl-demo-soon">Próximamente</span></button>
-            </div>
-            <button class="wl-demo-arrow wl-demo-arrow--next" type="button" aria-label="Informe siguiente" aria-controls="wlDemoFrame">
-              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
-            </button>
-          </div>
-
-          <div class="wl-demo-board">
             <div class="wl-demo-report">
               <iframe
                 id="wlDemoFrame"
@@ -548,6 +565,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 allowfullscreen
                 sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
             </div>
+            <button class="wl-demo-arrow wl-demo-arrow--next" type="button" aria-label="Informe siguiente" aria-controls="wlDemoFrame">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+            </button>
+            <button class="wl-demo-info" type="button" id="wlDemoInfoBtn" aria-haspopup="dialog" aria-controls="wlDemoInfo">
+              <span class="wl-demo-info-icon" aria-hidden="true">i</span>
+              Conclusiones
+            </button>
           </div>
 
         </div>
@@ -722,7 +746,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </main>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
-<script src="main.js?v=10"></script>
+<script src="main.js?v=11"></script>
 
 </body>
 </html>

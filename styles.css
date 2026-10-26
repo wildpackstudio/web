@@ -1863,10 +1863,10 @@
   .wild-lab .wl-demo-header{ margin-bottom:28px; max-width:640px; }
   .wild-lab .wl-demo-header h2{ font-family:var(--font-display); font-weight:400; font-size:clamp(28px,3.6vw,42px); margin:0 0 14px; color:var(--verde-osc); }
   .wild-lab .wl-demo-note{ font-size:14px; color:#7a857a; font-style:italic; margin:0; }
-  /* Pestañas de informes: mismo ancho que el tablero, recuadros naranjas + flechas */
+  /* Pestañas de informes: mismo ancho que el tablero, recuadros naranjas */
   .wild-lab .wl-demo-tabs{
     display:flex; align-items:center; gap:12px;
-    width:100%; max-width:1000px; margin:0 auto 16px;
+    width:100%; max-width:1000px; margin:0 auto;
   }
   .wild-lab .wl-demo-toggle{
     position:relative;
@@ -1901,13 +1901,87 @@
   .wild-lab .wl-demo-arrow:hover:not(:disabled){ background:var(--naranja); }
   .wild-lab .wl-demo-arrow:disabled{ cursor:not-allowed; opacity:.35; }
   @media (max-width:767px){
-    .wild-lab .wl-demo-tabs{ gap:8px; }
     .wild-lab .wl-demo-toggle{ gap:8px; justify-content:flex-start; }
     .wild-lab .wl-demo-toggle button{ flex:0 0 auto; padding:9px 16px; font-size:13px; }
     .wild-lab .wl-demo-arrow{ width:34px; height:34px; }
   }
   .wild-lab .wl-demo-soon{ display:inline-block; margin-left:6px; padding:2px 7px; border-radius:999px; background:rgba(23,57,31,.08); color:#7a857a; font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:.03em; vertical-align:1px; }
-  .wild-lab .wl-demo-board{ display:block; min-width:0; }
+  /* Botón fijo "(i) Conclusiones", al costado derecho del informe (arriba) */
+  .wild-lab .wl-demo-info{
+    -webkit-appearance:none; appearance:none; cursor:pointer;
+    display:inline-flex; align-items:center; gap:10px;
+    padding:7px 18px 7px 8px; border:2px solid var(--verde-osc); border-radius:22px;
+    background:var(--blanco); color:var(--verde-osc);
+    font-family:var(--font-body); font-size:14px; font-weight:700; line-height:1.2; white-space:nowrap;
+    transition:background-color .2s ease, color .2s ease;
+  }
+  .wild-lab .wl-demo-info-icon{
+    flex:0 0 auto; width:24px; height:24px; border:2px solid var(--naranja); border-radius:50%;
+    display:inline-flex; align-items:center; justify-content:center; box-sizing:border-box;
+    color:var(--naranja); font-family:Georgia, serif; font-size:14px; font-weight:700; font-style:normal; line-height:1;
+  }
+  .wild-lab .wl-demo-info:hover{ background:var(--verde-osc); color:var(--crema); }
+  .wild-lab .wl-demo-info:focus-visible{ outline:2px solid var(--naranja); outline-offset:2px; }
+
+  /* Ventana de conclusiones (una sola; el contenido cambia según el informe activo) */
+  .wl-demo-dialog{
+    width:min(640px, calc(100vw - 32px)); max-height:min(80vh, 720px);
+    padding:0; border:0; border-radius:8px; overflow:hidden;
+    background:var(--crema); color:var(--verde-osc);
+    box-shadow:0 24px 60px -20px rgba(19,28,17,.45);
+  }
+  .wl-demo-dialog[open]{ display:flex; flex-direction:column; }
+  .wl-demo-dialog::backdrop{ background:rgba(19,28,17,.55); }
+  .wl-demo-dialog-head{
+    display:flex; align-items:flex-start; justify-content:space-between; gap:16px;
+    padding:22px 24px 16px; border-bottom:1px solid rgba(23,57,31,.14);
+  }
+  .wl-demo-dialog-kicker{ margin:0 0 4px; font-family:var(--font-body); font-size:12px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--naranja); }
+  .wl-demo-dialog-head h3{ margin:0; font-family:var(--font-display); font-weight:400; font-size:clamp(22px,3vw,28px); line-height:1.1; color:var(--verde-osc); }
+  .wl-demo-dialog-close{
+    -webkit-appearance:none; appearance:none; cursor:pointer;
+    flex:0 0 auto; width:36px; height:36px; padding:0;
+    display:inline-flex; align-items:center; justify-content:center;
+    border:2px solid var(--naranja); border-radius:50%; background:transparent; color:var(--verde-osc);
+    transition:background-color .2s ease;
+  }
+  .wl-demo-dialog-close:hover{ background:var(--naranja); }
+  .wl-demo-dialog-close:focus-visible{ outline:2px solid var(--verde-osc); outline-offset:2px; }
+  .wl-demo-dialog-body{ padding:20px 24px 26px; overflow-y:auto; font-family:var(--font-body); font-size:15px; line-height:1.7; color:#3a473b; }
+  .wl-demo-dialog-body h4{ margin:18px 0 6px; font-size:15px; font-weight:700; color:var(--verde-osc); }
+  .wl-demo-dialog-body h4:first-child{ margin-top:0; }
+  .wl-demo-dialog-body p{ margin:0 0 12px; }
+  .wl-demo-dialog-empty{ font-style:italic; color:#7a857a; }
+
+  /* Escenario: arriba solo las pestañas; abajo flecha | informe | flecha | Conclusiones.
+     Se sale del .wrap para que el informe conserve sus 1000px con los controles a los costados. */
+  .wild-lab .wl-demo-stage{
+    display:grid; grid-template-columns:40px minmax(0,1000px) 40px auto;
+    grid-template-areas:". tabs . ." "prev report next info";
+    justify-content:center; align-items:center; column-gap:16px; row-gap:16px;
+    width:min(1320px, calc(100vw - 48px)); margin-left:calc(50% - min(660px, 50vw - 24px));
+  }
+  .wild-lab .wl-demo-stage .wl-demo-tabs{ grid-area:tabs; }
+  .wild-lab .wl-demo-stage .wl-demo-arrow--prev{ grid-area:prev; }
+  .wild-lab .wl-demo-stage .wl-demo-report{ grid-area:report; }
+  .wild-lab .wl-demo-stage .wl-demo-arrow--next{ grid-area:next; }
+  .wild-lab .wl-demo-stage .wl-demo-info{ grid-area:info; align-self:start; justify-self:start; }
+  /* Con lugar de sobra, el informe queda centrado en la página y Conclusiones cuelga a su derecha */
+  @media (min-width:1560px){
+    .wild-lab .wl-demo-stage{
+      width:min(1500px, calc(100vw - 48px)); margin-left:calc(50% - min(750px, 50vw - 24px));
+      grid-template-columns:minmax(0,1fr) 40px 1000px 40px minmax(0,1fr);
+      grid-template-areas:". . tabs . ." ". prev report next info";
+    }
+  }
+  @media (max-width:767px){
+    .wild-lab .wl-demo-stage{
+      grid-template-columns:34px minmax(0,1fr) 34px; grid-template-areas:". tabs ." "prev report next" "info info info";
+      column-gap:8px; row-gap:14px; width:calc(100vw - 24px); margin-left:calc(50% - 50vw + 12px);
+    }
+    /* en el celular no entra al costado: queda debajo del informe */
+    .wild-lab .wl-demo-stage .wl-demo-info{ justify-self:center; }
+  }
   /* 4:3 = lienzo del informe de Looker (1200x900). content-box hace que la proporcion
      aplique al area del iframe (sin el padding), asi el informe entra exacto, sin scroll.
      Ancho exterior maximo = 1000px, igual que .wl-demo-tabs. */

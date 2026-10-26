@@ -639,6 +639,37 @@
     if(next) next.addEventListener('click', function(){ step(1); });
     var single = available().length < 2;
     [prev, next].forEach(function(a){ if(a) a.disabled = single; });
+
+    /* Conclusiones: un solo botón/diálogo; el texto sale del <template data-conclusions>
+       que coincide con el data-view de la pestaña activa. */
+    var infoBtn = document.getElementById('wlDemoInfoBtn');
+    var dialog = document.getElementById('wlDemoInfo');
+    if(!infoBtn || !dialog || typeof dialog.showModal !== 'function') return;
+    var dialogTitle = document.getElementById('wlDemoInfoTitle');
+    var dialogBody = document.getElementById('wlDemoInfoBody');
+
+    function fillConclusions(){
+      var active = toggle.querySelector('button.is-active') || tabs[0];
+      var view = active.getAttribute('data-view');
+      dialogTitle.textContent = active.textContent.trim();
+      dialogBody.innerHTML = '';
+      var tpl = document.querySelector('template[data-conclusions="' + view + '"]');
+      if(tpl && tpl.content.textContent.trim()){
+        dialogBody.appendChild(tpl.content.cloneNode(true));
+      } else {
+        var empty = document.createElement('p');
+        empty.className = 'wl-demo-dialog-empty';
+        empty.textContent = 'Próximamente vas a encontrar acá las conclusiones de este informe.';
+        dialogBody.appendChild(empty);
+      }
+      dialogBody.scrollTop = 0;
+    }
+
+    infoBtn.addEventListener('click', function(){ fillConclusions(); dialog.showModal(); });
+    dialog.addEventListener('click', function(e){
+      /* cerrar con la X o clickeando el fondo (fuera del panel) */
+      if(e.target === dialog || e.target.closest('[data-close]')) dialog.close();
+    });
   })();
 
   /* ---- Wild Lab: vista independiente (no forma parte del scroll de la home) ---- */
